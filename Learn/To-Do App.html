@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<style>
+    .conainer {
+        background: rgb(255, 255, 255);
+        padding: 20px;
+        width: 50%;
+        margin: 0 auto;
+        border: 2px solid #FFF;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+
+        input {
+            border: 1px solid gainsboro;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        button {
+            background: rebeccapurple;
+            padding: 10px 20px;
+            text-align: center;
+            color: #FFF;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid #FFF;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f9f9f9;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li.completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .deleteBtn {
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 5px 8px;
+        }
+
+    }
+</style>
+
+<body>
+    <div class="conainer">
+        <div class="List">
+            <input type="text" name="" id="textInput" placeholder="Enter a new task...">
+            <button type="text" id="addBtn">ADD ON</button>
+        </div>
+        <ul id="taskList" class=""></ul>
+
+    </div>
+</body>
+
+<script>
+    const addBtn = document.getElementById('addBtn');
+    const textInput = document.getElementById('textInput');
+    const taskList = document.getElementById('taskList')
+
+    addBtn.addEventListener('click', () => {
+        const task = textInput.value.trim()
+        if (task === "") {
+            alert('please enter you text!')
+            return;
+        }
+        // Create list item
+        const li = document.createElement("li")
+        li.textContent = task;
+        // Toggle complete on click
+        li.addEventListener('click', () => {
+            li.classList.toggle('completed')
+        })
+        // Delete button
+        const deleteBtn = document.createElement("button")
+        deleteBtn.textContent = "X";
+        deleteBtn.classList.add("deleteBtn")
+        deleteBtn.addEventListener('click', () => {
+            li.remove();
+        })
+        li.appendChild(deleteBtn);
+        taskList.appendChild(li);
+        // Clear input
+        textInput.value = "";
+    })
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
